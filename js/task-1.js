@@ -1,28 +1,16 @@
-const hotel = {
-  name: 'Resort Hotel',
-  stars: 5,
-  capacity: 100,
+const user = {
+  name: 'Mango',
+  age: 20,
+  hobby: 'html',
+  premium: true,
 };
 
-/*
- * Посмотрите в консоли из каких двух элементов состоит каждый подмассив.
- * Первый элемент это ключ свойства, второй это значение.
- */
-const entries = Object.entries(hotel);
+user.mood = 'happy';
+user.hobby = 'skydiving';
+user.premium = false;
 
-/*
- * На каждой итерации по entries выберем первый элемент подмассива (ключ)
- * в переменную key, а второй (значение) в переменную value
- */
-for (const entry of entries) {
-  const key = entry[0];
-  const value = entry[1];
+const keys = Object.keys(user);
 
-  console.log(`${key}: ${value}`);
+for (const key of keys) {
+  console.log(`${key}: ${user[key]}`);
 }
-
-/*
- * name: Resort Hotel
- * stars: 5
- * capacity: 100
- */

@@ -1,20 +1,27 @@
-const maxLength = 40;
-const formatString = function (string) {
-  return string <= maxLength ? string : string.slice(0, maxLength) + '...';
-}
+const countTotalSalary = function (employees) {
+  let totalSalary = 0;
 
-console.log(formatString('Curabitur ligula sapien, tincidunt non.'));
-// вернется оригинальная строка
+  for (const salary of Object.values(employees)) {
+    totalSalary += salary;
+  }
 
-console.log(formatString('Vestibulum facilisis, purus nec pulvinar iaculis.'));
-// вернется форматированная строка
+  return totalSalary;
+};
 
-console.log(formatString('Curabitur ligula sapien.'));
-// вернется оригинальная строка
+console.log(countTotalSalary({})); // 0
 
 console.log(
-  formatString(
-    'Nunc sed turpis. Curabitur a felis in nunc fringilla tristique.',
-  ),
-);
-// вернется форматированная строка
+  countTotalSalary({
+    mango: 100,
+    poly: 150,
+    alfred: 80,
+  }),
+); // 330
+
+console.log(
+  countTotalSalary({
+    kiwi: 200,
+    lux: 50,
+    chelsy: 150,
+  }),
+); // 400

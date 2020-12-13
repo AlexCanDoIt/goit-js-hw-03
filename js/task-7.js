@@ -1,37 +1,61 @@
-const logins = ['Mango', 'robotGoogles', 'Poly', 'Aj4x1sBozz', 'qwerty123'];
-
-const isLoginValid = function (login) {
-  return login.length >= 4 && login.length <= 16;
+/*
+ * Типов транзацкий всего два.
+ * Можно положить либо снять деньги со счета.
+ */
+const Transaction = {
+  DEPOSIT: 'deposit',
+  WITHDRAW: 'withdraw',
 };
 
-const isLoginUnique = function (allLogins, login) {
-  return !allLogins.includes(login);
+/*
+ * Каждая транзакция это объект со свойствами: id, type и amount
+ */
+
+const account = {
+  // Текущий баланс счета
+  balance: 0,
+
+  // История транзакций
+  transactions: [],
+
+  /*
+   * Метод создает и возвращает объект транзакции.
+   * Принимает сумму и тип транзакции.
+   */
+  createTransaction(amount, type) {},
+
+  /*
+   * Метод отвечающий за добавление суммы к балансу.
+   * Принимает сумму танзакции.
+   * Вызывает createTransaction для создания объекта транзакции
+   * после чего добавляет его в историю транзакций
+   */
+  deposit(amount) {},
+
+  /*
+   * Метод отвечающий за снятие суммы с баланса.
+   * Принимает сумму танзакции.
+   * Вызывает createTransaction для создания объекта транзакции
+   * после чего добавляет его в историю транзакций.
+   *
+   * Если amount больше чем текущий баланс, выводи сообщение
+   * о том, что снятие такой суммы не возможно, недостаточно средств.
+   */
+  withdraw(amount) {},
+
+  /*
+   * Метод возвращает текущий баланс
+   */
+  getBalance() {},
+
+  /*
+   * Метод ищет и возвращает объект транзации по id
+   */
+  getTransactionDetails(id) {},
+
+  /*
+   * Метод возвращает количество средств
+   * определенного типа транзакции из всей истории транзакций
+   */
+  getTransactionTotal(type) {},
 };
-
-const addLogin = function (allLogins, login) {
-  const SUCCESS = 'Логин успешно добавлен!';
-  const REFUSAL = 'Такой логин уже используется!';
-  const ERROR = 'Ошибка! Логин должен быть от 4 до 16 символов.';
-  let message;
-
-  if (isLoginValid(login)) {
-    if (isLoginUnique(allLogins, login)) {
-      allLogins.push(login);
-      message = SUCCESS;
-    }
-    message = REFUSAL;
-  } else {
-    message = ERROR;
-  }
-
-  return message;
-};
-
-console.log(addLogin(logins, 'robotGoogles')); // 'Такой логин уже используется!'
-console.log(logins);
-console.log(addLogin(logins, 'Zod')); // 'Ошибка! Логин должен быть от 4 до 16 символов'
-console.log(logins);
-console.log(addLogin(logins, 'Ajax')); // 'Логин успешно добавлен!'
-console.log(logins);
-console.log(addLogin(logins, 'jqueryisextremelyfast')); // 'Ошибка! Логин должен быть от 4 до 16 символов'
-console.log(logins);
